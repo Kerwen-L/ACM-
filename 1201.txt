@@ -1,0 +1,62 @@
+class Solution(object):
+    def nthUglyNumber(self, n, a, b, c):
+        """
+        :type n: int
+        :type a: int
+        :type b: int
+        :type c: int
+        :rtype: int
+        """
+        
+        low = min(min(a,b),c)
+        high = n*low
+      
+         
+        self.ab = self.MCM(a,b)
+        self.ac = self.MCM(a,c)
+        self.bc = self.MCM(b,c)
+        self.abc = self.MCM(self.ab,c)
+        
+        res =  self.Binary_Search(low, high,a,b,c,n)
+         
+        
+        mod_a = res % a
+        mod_b = res % b
+        mod_c = res % c
+        
+        return res-min(min(mod_a,mod_b),mod_c)
+        
+        
+    def Binary_Search(self,low, high,a,b,c,n):
+        if low>=high:
+            return low;
+        
+        
+        mid = (low+high)/2
+        #print("mid="+str(mid))
+        
+        count_n = mid/a+mid/b+mid/c-mid/self.ab-mid/self.ac-mid/self.bc+mid/self.abc
+        
+       #print("count_n="+str(count_n))
+        
+        if count_n==n:
+            return mid
+        if count_n<n:
+            return self.Binary_Search(mid+1,high,a,b,c,n)
+        else:
+            return self.Binary_Search(low,mid-1,a,b,c,n)
+        
+        
+    def MCM(self,a,b):  #求两个数的最小公倍数
+        if a<b:
+            a,b = b,a
+        
+        M = a*b
+         
+        vari2 = a % b  
+        while vari2 != 0:  
+            a = b # 重新进行赋值,进行下次计算
+            b = vari2
+            vari2 = a % b # 对重新赋值后的两个整数取余数
+            
+        return M/b
