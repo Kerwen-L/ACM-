@@ -13,6 +13,7 @@ class Solution {
         int LeftStack = 0;
         int RightStack = 0;
         for (int i = 0; i < s.length(); i++) {
+            
             if(s.charAt(i) == '('){
                 if(RightStack == 1){
                     if(LeftStack >0) {
@@ -42,6 +43,7 @@ class Solution {
                 }
 
             }
+            System.out.println();
             
         }
         System.out.println(ans);
