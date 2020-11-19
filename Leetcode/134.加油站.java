@@ -14,13 +14,16 @@ class Solution {
     public int canCompleteCircuit(int[] gas, int[] cost) {
         List<int[]> DP = new ArrayList<int []>();
         DP.add(new int[]{0,gas[0]-cost[0]});
+        int Sign = 0;
         for (int i = 1; i < cost.length; i++) {
             int temp = gas[i] - cost[i];
-            if(Integer.signum(temp) == 0 || Integer.signum(temp) == Integer.signum(DP.get(DP.size()-1)[1])){
+            int temp_sign = Integer.signum(temp);
+            if(temp_sign == 0 || temp_sign == Sign){
                 DP.get(DP.size()-1)[1]+=temp;
             }
             else{
                 DP.add(new int[]{i,temp});
+                Sign = temp_sign;
             }
             
         }
