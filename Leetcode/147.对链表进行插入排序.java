@@ -20,18 +20,19 @@ class Solution {
         if( head == null){
             return null;
         }
-        ListNode ans = new ListNode(-1);
+        ListNode ans = new ListNode(0);
         ans.next = head; 
-        ListNode Second = head.next;
         head.next = null;
+        ListNode Second = head.next;
+        
         while(Second != null){
             ListNode temp = Second.next;
             ListNode pos = ans;
-            while(pos.next != null && Second.val > pos.next.val){
-                pos = pos.next;
+            ListNode pos_2;
+            while((pos_2=pos.next) != null && Second.val > pos_2.val){
+                pos = pos_2; 
             }
-            if(pos.next != null){
-                
+            if(pos_2 != null){
                 Second.next = pos.next;
                 pos.next = Second;
             }else{
