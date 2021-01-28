@@ -87,8 +87,7 @@ class Solution {
 class UnionSet{
 
     public int counts = 0;
-
-    private int lens = 0;
+ 
     private int[] parent = null;
     
     public UnionSet( int n ){

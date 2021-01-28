@@ -6,12 +6,10 @@
 
 // @lc code=start
 class UnionSet{
-    private int[] parent = null;
-    private int lens = 0;
+    private int[] parent = null; 
     private int counter = 0;
 
-    public UnionSet(int n){
-        this.lens = n;
+    public UnionSet(int n){ 
         this.parent = new int[n+1];
         this.counter = n;
         for (int i = 0; i < parent.length; i++) {
