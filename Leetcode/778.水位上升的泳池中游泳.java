@@ -30,13 +30,16 @@ class UnionSet{
             return false;
         }
         this.parent[x] = y;
+        // System.out.println(Arrays.toString(this.parent));
 
         return true;
 
     }
 
     public boolean judge(){
-        return this.parent[0] == this.parent[this.parent.length-1];
+        int x = this.find(0);
+        int y = this.find(this.parent.length-1);
+        return x == y;
     }
 }
 
@@ -65,12 +68,13 @@ class Solution {
             // System.out.println();
             int pos = position[i];
             // 向左
-            if( pos - 1 >= 0 && pos-1 % lens !=(lens-1)){
+            if( pos - 1 >= 0 && (pos-1) % lens !=(lens-1)){
+                
                 if(heighs[pos - 1] < i)
                     unionSet.union(pos, pos-1);
             }
             // 向右
-            if( pos + 1 < lens * lens && pos+1 % lens != 0 ){
+            if( pos + 1 < lens * lens && (pos+1) % lens != 0 ){
                 if(heighs[pos + 1] < i)
                     unionSet.union(pos, pos+1);
             }
@@ -92,4 +96,3 @@ class Solution {
     }
 }
 // @lc code=end
-
